@@ -11,24 +11,21 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
 public class Cidade {
-	
+
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@EqualsAndHashCode.Include
 	private Long id;
 	
 	@Column(nullable = false)
 	private String nome;
 	
-	@JoinColumn(nullable = false)
 	@ManyToOne
+	@JoinColumn(nullable = false)
 	private Estado estado;
-	
-	
-	
 
 }
