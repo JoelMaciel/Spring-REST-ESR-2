@@ -36,7 +36,7 @@ public class EstadoController {
 		return estadoRepository.listar();
 	}
 	
-	@GetMapping("/{estadoId")
+	@GetMapping("/{estadoId}")
 	public ResponseEntity<Estado> buscar(@PathVariable Long estadoId){
 		 Estado estado =  estadoRepository.buscar(estadoId);
 		 
