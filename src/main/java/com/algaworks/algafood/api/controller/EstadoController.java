@@ -31,7 +31,7 @@ public class EstadoController {
 	
 	@Autowired
 	private CadastroEstadoService cadastroEstado;
-	
+	@GetMapping
 	public List<Estado> listar(){
 		return estadoRepository.listar();
 	}
