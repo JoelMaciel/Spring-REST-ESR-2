@@ -9,7 +9,7 @@ public class CozinhaNaoEncontradaException  extends EntidadeNaoEncontradaExcepti
 	 
 	 public CozinhaNaoEncontradaException(Long cozinhaId) {
 		 
-		 this(String.format("Nao existe um cadastro de cozinha com o codifo%d",cozinhaId));
+		 this(String.format("Nao existe um cadastro de cozinha com o codido %d ",cozinhaId));
 	}
 
 }
