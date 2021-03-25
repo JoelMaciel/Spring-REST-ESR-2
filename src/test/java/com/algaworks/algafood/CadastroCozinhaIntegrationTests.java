@@ -20,21 +20,19 @@ public class CadastroCozinhaIntegrationTests {
 	private CadastroCozinhaService cadastroCozinha;
 	
 	@Test
-	public void testarCadastroCozinhaComSucesso() {
-		// cenário
+	public void deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos() {
+		
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome("Chinesa");
 		
-		// ação
 		novaCozinha = cadastroCozinha.salvar(novaCozinha);
 		
-		// validação
 		assertThat(novaCozinha).isNotNull();
 		assertThat(novaCozinha.getId()).isNotNull();
 	}
 	
 	@Test
-	public void testarCadastroCozinhaSemNome() {
+	public void deveFalhar_QuandoCadastrarCozinhaSemNome() {
 
 		assertThrows(ConstraintViolationException.class, () -> {
 
@@ -45,6 +43,37 @@ public class CadastroCozinhaIntegrationTests {
 
 		});
 	}
+	
+	@Test
+	public void deveFalhar_QuandoExcluirCozinhaEmUso() {
+		
+		assertThrows(ConstraintViolationException.class, () ->{
+			
+			cadastroCozinha.excluir(1L);
+		});
+		
+	}
+	
+	@Test
+	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
+		
+		assertThrows(ConstraintViolationException.class, () -> {
+			
+			cadastroCozinha.excluir(100L);
+
+		});
+	}
+	
+	/*@Test(expected = EntidadeEmUsoException.class)
+    public void deveFalhar_QuandoExcluirCozinhaEmUso() {
+        cadastroCozinha.excluir(1L);
+    }
+	
+	@Test(expected = CozinhaNaoEncontradaException.class)
+    public void deveFalhar_QuandoExcluirCozinhaInexistente() {
+        cadastroCozinha.excluir(100L);
+    }  */
+	
 
 }
 
